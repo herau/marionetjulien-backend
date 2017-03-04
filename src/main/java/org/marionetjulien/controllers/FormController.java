@@ -31,14 +31,20 @@ public class FormController {
     @PostMapping("/api/form")
     public ResponseEntity postForm(@Valid @RequestBody Form form) {
         Email from = new Email("marionetjulien@example.fr");
-        String subject = "Confirmation de présence au mariage \uD83D\uDC92";
+        String subject = "Confirmation de présence au mariage \uD83D\uDC92 \uD83D\uDC4C";
         Email to = new Email(emailTo);
         Content content = new Content("text/html", "");
 
         String stringBuilder =
-                "Hello, <br/><strong>" + form.getName() + "</strong> a répondu sur le site <br/>" + "présence : " + (form.isPresent() ? "OUI \uD83D\uDC4C"
-                                                                                                                : "NON \uD83D\uDE15")
-                + "<br/>" + "Email : " + form.getEmail();
+                "Hello, <br/><strong>" + form.getFirstname() + " " +  form.getLastname() + "</strong> a répondu sur le site"
+                + "<br/>"
+                + "Email : " + form.getEmail()
+                + "<br/>"
+                + "présence : " + form.getPresent()
+                + "<br/>"
+                + "Nombre de personnes : " + form.getPeople()
+                + "<br/>"
+                + "Nombre d'enfants : " + form.getChildren();
 
         content.setValue(stringBuilder);
 

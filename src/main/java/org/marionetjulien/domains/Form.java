@@ -8,16 +8,25 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by n27 on 2/27/17.
  */
-@Getter @Setter
+@Getter
+@Setter
 public class Form {
 
-   @NotNull
-   private String name;
     @NotNull
-   private String email;
+    private String firstname;
+
     @NotNull
-   private boolean present;
+    private String lastname;
 
+    @NotNull
+    private String email;
 
+    @NotNull
+    private Integer people;
 
+    @NotNull
+    private Integer children;
+
+    @NotNull
+    private String present;
 }
