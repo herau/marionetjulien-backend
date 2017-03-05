@@ -11,6 +11,7 @@ import org.marionetjulien.domains.Form;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,7 @@ public class FormController {
     private String emailTo;
 
     @PostMapping("/api/form")
+    @CrossOrigin
     public ResponseEntity postForm(@Valid @RequestBody Form form) {
         Email from = new Email("marionetjulien@example.fr");
         String subject = "Confirmation de présence au mariage \uD83D\uDC92 \uD83D\uDC4C";
