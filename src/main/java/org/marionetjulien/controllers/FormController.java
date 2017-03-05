@@ -23,6 +23,7 @@ import java.io.IOException;
 /**
  * Created by n27 on 2/27/17.
  */
+@CrossOrigin
 @RestController
 public class FormController {
 
@@ -30,14 +31,12 @@ public class FormController {
     private String emailTo;
 
     @PostMapping("/api/form")
-    @CrossOrigin
     public ResponseEntity postForm(@Valid @RequestBody Form form) {
         Email from = new Email("marionetjulien@example.fr");
         String subject = "Confirmation de présence au mariage \uD83D\uDC92 \uD83D\uDC4C";
         Email to = new Email(emailTo);
-        Content content = new Content("text/html", "");
 
-        String stringBuilder =
+        String value =
                 "Hello, <br/><strong>" + form.getFirstname() + " " +  form.getLastname() + "</strong> a répondu sur le site"
                 + "<br/>"
                 + "Email : " + form.getEmail()
@@ -48,7 +47,7 @@ public class FormController {
                 + "<br/>"
                 + "Nombre d'enfants : " + form.getChildren();
 
-        content.setValue(stringBuilder);
+        Content content = new Content("text/html", value);
 
         Mail mail = new Mail(from, subject, to, content);
 
