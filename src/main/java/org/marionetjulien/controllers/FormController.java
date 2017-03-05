@@ -53,16 +53,18 @@ public class FormController {
 
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
+        String apiKey = System.getenv("SENDGRID_API_KEY");
+        log.info("SENDGRID API KEY is OK: {}", apiKey != null);
+        SendGrid sg = new SendGrid(apiKey);
         Request request = new Request();
         try {
             request.method = Method.POST;
             request.endpoint = "mail/send";
             request.body = mail.build();
             Response response = sg.api(request);
-            log.info("mail sent:", response);
+            log.info("mail sent {}", response.statusCode);
         } catch (IOException ex) {
-            log.error("Unable to send the mail", ex);
+            log.error("Unable to send the mail", ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
