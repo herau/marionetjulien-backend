@@ -7,6 +7,7 @@ import com.sendgrid.Method;
 import com.sendgrid.Request;
 import com.sendgrid.Response;
 import com.sendgrid.SendGrid;
+import lombok.extern.slf4j.Slf4j;
 import org.marionetjulien.domains.Form;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ import java.io.IOException;
  */
 @CrossOrigin
 @RestController
+@Slf4j
 public class FormController {
 
     @Value("${email.to}")
@@ -58,8 +60,9 @@ public class FormController {
             request.endpoint = "mail/send";
             request.body = mail.build();
             Response response = sg.api(request);
-            System.out.println(response.statusCode);
+            log.info("mail sent:", response);
         } catch (IOException ex) {
+            log.error("Unable to send the mail", ex);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
