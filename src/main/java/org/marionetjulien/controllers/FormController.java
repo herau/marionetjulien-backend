@@ -11,6 +11,7 @@ import org.marionetjulien.domains.Form;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ import java.io.IOException;
 /**
  * Created by n27 on 2/27/17.
  */
+@CrossOrigin
 @RestController
 public class FormController {
 
