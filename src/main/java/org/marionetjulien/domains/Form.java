@@ -13,9 +13,6 @@ import javax.validation.constraints.NotNull;
 public class Form {
 
     @NotNull
-    private String firstname;
-
-    @NotNull
     private String lastname;
 
     @NotNull
