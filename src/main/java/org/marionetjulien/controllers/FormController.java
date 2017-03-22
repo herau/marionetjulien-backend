@@ -39,7 +39,7 @@ public class FormController {
         Email to = new Email(emailTo);
 
         String value =
-                "Hello, <br/><strong>" + form.getFirstname() + " " +  form.getLastname() + "</strong> a répondu sur le site"
+                "Hello, <br/>M. / Mme <strong>" +  form.getLastname() + "</strong> ont répondu sur le site"
                 + "<br/>"
                 + "Email : " + form.getEmail()
                 + "<br/>"
